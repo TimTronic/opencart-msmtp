@@ -1,5 +1,21 @@
 # OpenCart
 
+## Fork modification 
+
+MSMTP is the default sendmail tool.
+
+Override enviro variables:
+
+- ENV MSMTP_MAILHOST=mailserver
+- ENV MSMTP_TLS=off
+- ENV MSMTP_STARTTLS=off
+- ENV MSMTP_TLS_CERTCHECK=off
+- ENV MSMTP_AUTH=off
+- ENV MSMTP_FROM=mailer
+- ENV MSMTP_PORT=25
+- ENV MSMTP_LOGFILE=/var/log/msmtp.log
+
+
 ## Overview
 
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%208.0-8892BF.svg?style=flat-square)](https://php.net/)
