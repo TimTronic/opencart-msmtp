@@ -32,7 +32,16 @@ RUN --mount=type=cache,target=/var/cache/apt \
     DEBIAN_FRONTEND=noninteractive \
     apt-get update && apt-get dist-upgrade -y && apt-get install msmtp rsync gettext-base --no-install-recommends -y
    
-COPY msmtp-tree/ /
+COPY msmtp-tree/ /staging/
+
+RUN cp -r /staging/usr/local/bin/* /usr/local/bin/ && \
+    chmod +x /usr/local/bin/* && \
+    cp -r /staging/usr/local/etc/* /usr/local/etc/ && \
+    cp /staging/etc/msmtprc.template /etc/msmtprc.template && \
+    touch /etc/msmtprc && \
+    chmod 666 /etc/msmtprc && \
+    rm -rf /staging
+
 ENTRYPOINT ["entrypoint-override.sh"]
 
 ### MODIFICATION ENDS
