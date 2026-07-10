@@ -10,4 +10,4 @@ auth $MSMTP_AUTH
 user $MSMTP_USER
 password $MSMTP_PASSWORD
 from $MSMTP_FROM
-logfile $MSMTP_LOGFILE
+#logfile $MSMTP_LOGFILE
