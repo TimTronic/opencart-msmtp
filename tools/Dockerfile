@@ -16,6 +16,11 @@ RUN apt-get update \
 
 RUN a2enmod rewrite
 
+# Compress JSON/SVG/font responses too (base mod_deflate already covers html/css/js/xml)
+RUN printf '<IfModule mod_filter.c>\n\tAddOutputFilterByType DEFLATE application/json application/manifest+json image/svg+xml font/ttf font/otf application/vnd.ms-fontobject\n</IfModule>\n' \
+      > /etc/apache2/conf-available/deflate-extra.conf \
+    && a2enconf deflate-extra
+
 ### MODIFICATION BEGINS
 
 ENV MSMTP_MAILHOST=mailserver
